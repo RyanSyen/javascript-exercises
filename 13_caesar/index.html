@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function caesar(str, shift) {
+            let newArr = [];
+            let lowerCaseRegex = /^[a-z]+$/;
+            let upperCaseRegex = /^[A-Z]+$/;
+            let startUpperCaseCode = 65;
+            let endUpperCaseCode = 90;
+            let startLowerCaseCode = 97;
+            let endLowerCaseCode = 122;
+            let diff = endUpperCaseCode - startUpperCaseCode;
+            // convert string to an array
+            const arrayString = str.split('');
+            arrayString.forEach(element => {
+                if (lowerCaseRegex.test(element)) {
+                    let index = element.charCodeAt() + shift;
+                    console.log(element.charCodeAt(), index)
+                    if (index > endLowerCaseCode) {
+                        index = (index % diff) + startLowerCaseCode;
+                        let newChar = String.fromCharCode(index);
+                        newArr.push(newChar);
+                    } else {
+                        let newChar = String.fromCharCode(index);
+                        newArr.push(newChar);
+
+                    }
+                } else if (upperCaseRegex.test(element)) {
+                    let index = element.charCodeAt() + shift;
+                    console.log(element.charCodeAt(), index)
+                    if (index > endUpperCaseCode) {
+                        index = (index % diff) + startUpperCaseCode;
+                        let newChar = String.fromCharCode(index);
+                        newArr.push(newChar);
+                    } else {
+                        let newChar = String.fromCharCode(index);
+                        newArr.push(newChar);
+                    }
+                } else {
+                    // if its a punctuation
+                    newArr.push(element);
+                }
+
+            });
+            let newString = newArr.join('');
+            // return newString;
+            console.log(newString);
+        };
+        caesar('Hello, World!', 75);
+    </script>
+</body>
+
+</html>
